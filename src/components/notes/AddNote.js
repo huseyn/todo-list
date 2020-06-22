@@ -10,8 +10,8 @@ const AddNote = () => {
             M.toast({ html: 'Please enter note' });
         } else {
             console.log(text);
-            setText('');
         }
+        setText('');
     }
 
     return (

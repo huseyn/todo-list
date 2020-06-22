@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Moment from 'react-moment';
 import PropTypes from 'prop-types'
 
@@ -8,8 +8,7 @@ const NoteItem = ({ note }) => {
             <div>
                 <label>
                     <input
-                        type="checkbox"
-                        checked={note.isCompleted} />
+                        type="checkbox" />
                     <span>
                         {note.text}
                     </span>
