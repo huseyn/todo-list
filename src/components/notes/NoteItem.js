@@ -7,7 +7,9 @@ const NoteItem = ({ note }) => {
         <li className="collection-item">
             <div>
                 <label>
-                    <input type="checkbox" onChange={note.isCompleted} />
+                    <input
+                        type="checkbox"
+                        checked={note.isCompleted} />
                     <span>
                         {note.text}
                     </span>
@@ -24,11 +26,6 @@ const NoteItem = ({ note }) => {
                 <a href="#edit-note-modal" className="secondary-content">
                     <span className="material-icons">
                         edit
-                    </span>
-                </a>
-                <a href="#add-note-modal" className="secondary-content">
-                    <span className="material-icons">
-                        add
                     </span>
                 </a>
             </div></li>

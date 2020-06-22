@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import SearchBar from './components/layout/SearchBar';
 import Notes from './components/notes/Notes';
+import AddNote from './components/notes/AddNote';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js'
@@ -17,6 +18,7 @@ function App() {
     <Fragment>
       <SearchBar />
       <div className="container">
+        <AddNote />
         <Notes />
       </div>
     </Fragment>
