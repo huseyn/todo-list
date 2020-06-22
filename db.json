@@ -2,8 +2,15 @@
   "notes": [
     {
       "id": 1,
-      "text": "Here is the example note",
-      "date": "21-06-2020"
+      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+      "isCompleted": false,
+      "date": "06-21-2020"
+    },
+    {
+      "id": 2,
+      "text": " It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "isCompleted": false,
+      "date": "06-21-2020"
     }
   ]
 }
