@@ -13,7 +13,7 @@ const AddNote = ({addNote}) => {
             M.toast({ html: 'Please enter note' });
         } else {
             const newNote = {
-                text,
+                text, 
                 isCompleted:false,
                 date:new Date()
             }
