@@ -1,4 +1,4 @@
-import { GET_NOTES, SET_LOADING, NOTES_ERROR, ADD_NOTE } from "./types";
+import { GET_NOTES, SET_LOADING, NOTES_ERROR, ADD_NOTE, DELETE_NOTE } from "./types";
 
 export const addNote = (note) => async (dispatch) => {
   try {
@@ -35,6 +35,26 @@ export const getNotes = () => async (dispatch) => {
     dispatch({
       type: GET_NOTES,
       payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: NOTES_ERROR,
+      payload: error.response.data,
+    });
+  }
+};
+
+export const deleteNote = (id) => async (dispatch) => {
+  try {
+    setLoading();
+
+     await fetch(`/notes/${id}`, {
+       method:'DELETE'
+     });
+
+    dispatch({
+      type: DELETE_NOTE,
+      payload: id,
     });
   } catch (error) {
     dispatch({

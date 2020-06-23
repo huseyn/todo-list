@@ -1,8 +1,17 @@
 import React from 'react';
 import Moment from 'react-moment';
-import PropTypes from 'prop-types'
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import {deleteNote} from '../../actions/noteActions';
+import M from 'materialize-css/dist/js/materialize.min.js';
 
-const NoteItem = ({ note }) => {
+const NoteItem = ({ note, deleteNote }) => {
+
+    const onDelete = () => {
+        deleteNote(note.id);
+        M.toast({html:'Note deleted'});
+    }
+
     return (
         <li className="collection-item">
             <div>
@@ -17,7 +26,7 @@ const NoteItem = ({ note }) => {
                 <span className="grey-text">
                     <Moment format='MMMM Do YYYY, h:mm:ss a'>{note.date}</Moment>
                 </span>
-                <a href="#delete-note-modal" className="secondary-content">
+                <a href="#!" onClick= {onDelete} className="secondary-content">
                     <span className="material-icons">
                         delete
                     </span>
@@ -32,7 +41,8 @@ const NoteItem = ({ note }) => {
 }
 
 NoteItem.propTypes = {
-    note: PropTypes.object.isRequired
+    note: PropTypes.object.isRequired,
+    deleteNote: PropTypes.func.isRequired
 }
 
-export default NoteItem
+export default connect(null, {deleteNote})(NoteItem);

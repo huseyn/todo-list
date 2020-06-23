@@ -2,7 +2,8 @@ import {
     GET_NOTES,
     SET_LOADING,
     NOTES_ERROR,
-    ADD_NOTE
+    ADD_NOTE,
+    DELETE_NOTE
 } from '../actions/types';
 
 const initialState = {
@@ -25,6 +26,12 @@ export default (state = initialState, action) => {
             ...state,
             notes: [...state.notes, action.payload],
             loading:false
+        }
+        case DELETE_NOTE: 
+        return {
+            ...state,
+            notes: state.notes.filter(note=> note.id!==action.payload),
+            loading: false
         }
         case SET_LOADING:
             return {
