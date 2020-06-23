@@ -3,7 +3,8 @@ import {
     SET_LOADING,
     NOTES_ERROR,
     ADD_NOTE,
-    DELETE_NOTE
+    DELETE_NOTE,
+    SEARCH_NOTES
 } from '../actions/types';
 
 const initialState = {
@@ -27,6 +28,11 @@ export default (state = initialState, action) => {
             notes: [...state.notes, action.payload],
             loading:false
         }
+        case SEARCH_NOTES :
+            return {
+                ...state,
+                notes: action.payload
+            }
         case DELETE_NOTE: 
         return {
             ...state,
