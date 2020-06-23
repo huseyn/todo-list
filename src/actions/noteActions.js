@@ -4,7 +4,7 @@ import {
     NOTES_ERROR
 } from './types';
 
-export const getLogs = () => async dispatch => {
+export const getNotes = () => async dispatch => {
 
     try {
         setLoading();

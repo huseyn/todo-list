@@ -1,38 +1,38 @@
-import React, { useState, useEffect } from 'react'
-import NoteItem from './NoteItem';
-import PreLoader from '../layout/PreLoader';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import NoteItem from "./NoteItem";
+import PreLoader from "../layout/PreLoader";
+import PropTypes from "prop-types";
+import {getNotes} from '../../actions/noteActions';
 
-const Notes = () => {
+const Notes = ({ note: { notes, loading }, getNotes }) => {
 
-    const [notes, setNotes] = useState([]);
-    const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    getNotes();
+    // eslint-disable-next-line
+  }, []);
 
-    useEffect(() => {
-        getNotes();
-        // eslint-disable-next-line
-    }, [])
+  if (loading || notes===null) {
+    return <PreLoader />;
+  }
 
-    const getNotes = async () => {
-        setLoading(true);
-        const res = await fetch('/notes');
-        const data = await res.json();
+  return (
+    <ul className="collection with-header">
+      {!loading && notes.length === 0 ? (
+        <p className="center">No notes to show</p>
+      ) : (
+        notes.map((note) => <NoteItem key={note.id} note={note} />)
+      )}
+    </ul>
+  );
+};
 
-        setNotes(data);
-        setLoading(false);
-    }
+Notes.propTypes = {
+  note: PropTypes.object.isRequired
+};
 
-    if (loading) {
-        return <PreLoader />
-    }
+const mapStateToProps = (state) => ({
+  note: state.note,
+});
 
-    return (
-        <ul className="collection with-header">
-            {!loading && notes.length === 0 ? (<p className="center">No notes to show</p>) : (
-                notes.map(note => <NoteItem key={note.id} note={note} />
-                )
-            )}
-        </ul>
-    )
-}
-
-export default Notes;
+export default connect(mapStateToProps, {getNotes})(Notes);
