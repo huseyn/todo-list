@@ -5,7 +5,11 @@ import {
   ADD_NOTE,
   DELETE_NOTE,
   SEARCH_NOTES,
-  CHECK_COMPLETION
+  CHECK_COMPLETION,
+  SET_CURRENT,
+  CLEAR_NOTES,
+  CLEAR_CURRENT,
+  UPDATE_NOTE
 } from "./types";
 
 export const addNote = (note) => async (dispatch) => {
@@ -95,6 +99,46 @@ export const deleteNote = (id) => async (dispatch) => {
     });
   }
 };
+
+export const updateNote = note=> async (dispatch) => {
+  try {
+    setLoading();
+
+    const res = await fetch(`/notes/${note.id}`, {
+      method: "PUT",
+      body: JSON.stringify(note),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const data = await res.json();
+
+    dispatch({
+      type: UPDATE_NOTE,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: NOTES_ERROR,
+      payload: error.response.data,
+    });
+  }
+};
+
+export const setCurrent = note => {
+  return {
+    type: SET_CURRENT,
+    payload: note
+  }
+}
+
+export const clearCurrent = () => {
+  return {
+    type: CLEAR_CURRENT
+  }
+}
+
 
 export const searchNotes = (text) => async (dispatch) => {
   try {
