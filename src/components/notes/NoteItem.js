@@ -38,7 +38,7 @@ const NoteItem = ({ note, deleteNote, checkCompletion }) => {
         <a href="#!" onClick={onDelete} className="secondary-content">
           <span className="material-icons">delete</span>
         </a>
-        <a href="#edit-note-modal" className="secondary-content">
+        <a href="#edit-note-modal" className="secondary-content modal-trigger">
           <span className="material-icons">edit</span>
         </a>
       </div>
