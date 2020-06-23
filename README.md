@@ -1,4 +1,4 @@
-#TODO-LIST
+# TODO-LIST
 
 Simple todo-list application with react-redux
 
