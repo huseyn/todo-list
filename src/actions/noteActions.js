@@ -1,31 +1,51 @@
-import {
-    GET_NOTES,
-    SET_LOADING,
-    NOTES_ERROR
-} from './types';
+import { GET_NOTES, SET_LOADING, NOTES_ERROR, ADD_NOTE } from "./types";
 
-export const getNotes = () => async dispatch => {
+export const addNote = (note) => async (dispatch) => {
+  try {
+    setLoading();
 
-    try {
-        setLoading();
+    const res = await fetch("/notes", {
+      method: "POST",
+      body: JSON.stringify(note),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
 
-        const res = await fetch('/notes');
-        const data = await res.json();
+    dispatch({
+      type: ADD_NOTE,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: NOTES_ERROR,
+      payload: error.response.data,
+    });
+  }
+};
 
-        dispatch({
-            type: GET_NOTES,
-            payload: data
-        });
-    } catch (error) {
-        dispatch({
-            type: NOTES_ERROR,
-            payload: error.response.data
-        })
-    }
+export const getNotes = () => async (dispatch) => {
+  try {
+    setLoading();
+
+    const res = await fetch("/notes");
+    const data = await res.json();
+
+    dispatch({
+      type: GET_NOTES,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: NOTES_ERROR,
+      payload: error.response.data,
+    });
+  }
 };
 
 export const setLoading = () => {
-    return {
-        type: SET_LOADING
-    };
+  return {
+    type: SET_LOADING,
+  };
 };

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import  {addNote} from '../../actions/noteActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const AddNote = () => {
+const AddNote = ({addNote}) => {
 
     const [text, setText] = useState('');
 
@@ -9,7 +12,14 @@ const AddNote = () => {
         if (text === '') {
             M.toast({ html: 'Please enter note' });
         } else {
-            console.log(text);
+            const newNote = {
+                text,
+                date:new Date()
+            }
+
+            addNote(newNote);
+
+            M.toast({html: 'Note added'});
         }
         setText('');
     }
@@ -35,4 +45,8 @@ const AddNote = () => {
     )
 }
 
-export default AddNote;
+AddNote.propTypes ={ 
+    addNote:PropTypes.func.isRequired
+}
+
+export default connect(null,{addNote}) (AddNote);

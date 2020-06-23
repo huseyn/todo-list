@@ -1,7 +1,8 @@
 import {
     GET_NOTES,
     SET_LOADING,
-    NOTES_ERROR
+    NOTES_ERROR,
+    ADD_NOTE
 } from '../actions/types';
 
 const initialState = {
@@ -19,6 +20,12 @@ export default (state = initialState, action) => {
                 notes: action.payload,
                 loading: false
             }
+        case ADD_NOTE: 
+        return {
+            ...state,
+            notes: [...state.notes, action.payload],
+            loading:false
+        }
         case SET_LOADING:
             return {
                 ...state,

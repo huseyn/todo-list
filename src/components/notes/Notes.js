@@ -28,7 +28,8 @@ const Notes = ({ note: { notes, loading }, getNotes }) => {
 };
 
 Notes.propTypes = {
-  note: PropTypes.object.isRequired
+  note: PropTypes.object.isRequired,
+  getNotes: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
