@@ -17,7 +17,14 @@ const EditNoteModal = ({ current, updateNote }) => {
     if (text === "") {
       M.toast({ html: "Please enter note" });
     } else {
-      console.log(text);
+      const updNote = {
+          id: current.id,
+          text,
+          date: new Date()
+      }
+
+      updateNote(updNote);
+      M.toast({html: 'Note updated'});
     }
     setText("");
   };
