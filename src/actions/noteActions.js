@@ -4,7 +4,8 @@ import {
   NOTES_ERROR,
   ADD_NOTE,
   DELETE_NOTE,
-  SEARCH_NOTES
+  SEARCH_NOTES,
+  CHECK_COMPLETION
 } from "./types";
 
 export const addNote = (note) => async (dispatch) => {
@@ -41,6 +42,30 @@ export const getNotes = () => async (dispatch) => {
 
     dispatch({
       type: GET_NOTES,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: NOTES_ERROR,
+      payload: error.response.data,
+    });
+  }
+};
+
+export const checkCompletion = (note) => async (dispatch) => {
+  try {
+    setLoading();
+    const res = await fetch(`/notes/${note.id}`,{
+      method:'PUT',
+      body:JSON.stringify(note),
+      headers: {
+        'Content-Type' :'application/json'
+      }
+    });
+    const data = await res.json();
+
+    dispatch({
+      type: CHECK_COMPLETION,
       payload: data,
     });
   } catch (error) {

@@ -8,3 +8,4 @@ export const CLEAR_NOTES = 'CLEAR_NOTES';
 export const SET_LOADING = 'SET_LOADING';
 export const NOTES_ERROR = 'NOTES_ERROR';
 export const SEARCH_NOTES = 'SEARCH_NOTES';
+export const CHECK_COMPLETION = 'CHECK_COMPLETION';

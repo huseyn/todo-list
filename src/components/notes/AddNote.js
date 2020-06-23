@@ -14,6 +14,7 @@ const AddNote = ({addNote}) => {
         } else {
             const newNote = {
                 text,
+                isCompleted:false,
                 date:new Date()
             }
 
